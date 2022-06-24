@@ -1,39 +1,65 @@
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicSliderUI;
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class Main implements ActionListener {
-    JFrame frame = new JFrame("Goblin Killen Island");
-    JButton[][] grid;
-    JTextArea textArea;
-    public Main(int width,int length){
+public class Main {
+        public static void main(String[] args) {
+            Humans player = new Humans();
+            Goblins goblin = new Goblins();
+            Scanner playerInput=new Scanner(System.in);
+        Object [][] gameBoard={
+                {"\uD83D\uDD1A","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83E\uDDF0","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA"},
+                {"\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA"},
+                {"\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDC79"},
+                {"\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA"},
+                {"\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA"},
+                {"\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA"},
+                {"\uD83D\uDD11","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA"},
+                {"\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83E\uDDDD"}
+        };
 
-        frame.setLayout(new GridLayout(width,length));
-        grid=new JButton[width][length];//allocate the size of grid
-        for( int y=0; y<length; y++){
-            for( int x=0; x<width; x++){
-                grid[x][y]=new JButton("("+x+","+y+")");
-                frame.add(grid[x][y]);//adds button to grid
-                grid[x][y].addActionListener(this);
+        boolean running = true;
+        while(running) {
+            for (int i = 0; i < gameBoard.length; i++) {
+                for (int j = 0; j < gameBoard[i].length; j++) {
+                    System.out.print(gameBoard[i][j] + "\t");
+                }
+                System.out.println("\n");
             }
+            String input = playerInput.nextLine().toLowerCase();
+            int[] oldCords = player.getCords();
+            int[] newCords = new int[2];
+            if (input.startsWith("n")) {
+                newCords[0] = oldCords[0] - 1;
+                newCords[1] = oldCords[1];
+                player.setCords(newCords);
+                Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
+                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+            } else if (input.startsWith("s")) {
+                newCords[0] = oldCords[0] + 1;
+                newCords[1] = oldCords[1];
+                player.setCords(newCords);
+                Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
+                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+            } else if (input.startsWith("e")) {
+                newCords[0] = oldCords[0];
+                newCords[1] = oldCords[1] + 1;
+                player.setCords(newCords);
+                Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
+                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+            } else if (input.startsWith("w")) {
+                newCords[0] = oldCords[0];
+                newCords[1] = oldCords[1] - 1;
+                player.setCords(newCords);
+                Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
+                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+            }
+            System.out.println(Arrays.toString(newCords));
         }
-        textArea = new JTextArea(1,100 );
-        frame.add(textArea);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        textArea.setText(textArea.getText().concat("You have clicked a button\n "));
-    }
-    JPanel panel = new JPanel();
 
-    public static void main(String[] args) {
-        new Main(3,3);
+
     }
 }

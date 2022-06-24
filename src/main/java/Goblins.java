@@ -3,14 +3,17 @@ public class Goblins {
     private int stamina;
     private String name;
     private String color;
-    // Do not change the constructor for goblin please!
+
+    private int[] cords;
+
     public Goblins() {
     }
-    public Goblins(int strength, int stamina, String name, String color){
+    public Goblins(int strength, int stamina, String name, String color,int[] cords){
         this.strength = strength;
         this.stamina=stamina;
         this.name=name;
         this.color=color;
+        this.cords=cords;
     }
     public int getStrength() {
         return strength;
@@ -28,6 +31,10 @@ public class Goblins {
         return color;
     }
 
+    public int[] getCords() {
+        return cords;
+    }
+
     public void setStrength(int strength) {
         this.strength = strength;
     }
@@ -42,6 +49,10 @@ public class Goblins {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setCords(int[] cords) {
+        this.cords = cords;
     }
 
     @Override
