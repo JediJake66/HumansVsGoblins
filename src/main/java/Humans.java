@@ -1,7 +1,10 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Humans {
+    Goblins goblin = new Goblins();
     private String name;
-    private int health;
-    private int strength;
+    private int health=50;
+    private int strength= ThreadLocalRandom.current().nextInt(10, 20);
     private int stamina;
 
     private int[] cords={7,7};
@@ -15,6 +18,19 @@ public class Humans {
         this.strength=strength;
         this.stamina=stamina;
         this.cords=cords;
+    }
+
+    public void attack(){
+        while(health>0&&goblin.getHealth()>0) {
+            goblin.setHealth(goblin.getHealth() - strength);
+            setHealth(getHealth()- goblin.getStrength());
+            System.out.println("player health" +health);
+            System.out.println("Player Strength" + strength);
+            System.out.println("Goblin health" + goblin.getHealth());
+            System.out.println("Goblin Strength" + goblin.getStrength());
+        }
+        goblin.setHealth(20);
+        goblin.setStrength(ThreadLocalRandom.current().nextInt(1, 20));
     }
     public String getName(){
         return name;

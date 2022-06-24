@@ -1,18 +1,22 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Goblins {
-    private int strength;
+    private int strength= ThreadLocalRandom.current().nextInt(1, 20);
     private int stamina;
     private String name;
     private String color;
+    private int health=30;
 
     private int[] cords;
 
     public Goblins() {
     }
-    public Goblins(int strength, int stamina, String name, String color,int[] cords){
+    public Goblins(int strength, int stamina, String name, String color, int health, int[] cords){
         this.strength = strength;
         this.stamina=stamina;
         this.name=name;
         this.color=color;
+        this.health=health;
         this.cords=cords;
     }
     public int getStrength() {
@@ -29,6 +33,10 @@ public class Goblins {
 
     public String getColor() {
         return color;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     public int[] getCords() {
@@ -49,6 +57,10 @@ public class Goblins {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public void setCords(int[] cords) {

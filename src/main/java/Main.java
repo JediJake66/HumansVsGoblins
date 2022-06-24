@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+
         public static void main(String[] args) {
             Humans player = new Humans();
             Goblins goblin = new Goblins();
@@ -33,31 +34,79 @@ public class Main {
                 newCords[1] = oldCords[1];
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                if(temp.equals ("\uD83D\uDC79")){
+                    System.out.println("ATTACK!!!");
+                    player.attack();
+                    if(player.getHealth()>0){
+                        System.out.println("You are victorious!");
+                    }else{
+                        System.out.println("You died in combat");
+                        running = false;
+                    }
+                }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
             } else if (input.startsWith("s")) {
                 newCords[0] = oldCords[0] + 1;
                 newCords[1] = oldCords[1];
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                if(temp.equals ("\uD83D\uDC79")){
+                    System.out.println("ATTACK!!!");
+                    player.attack();
+                    if(player.getHealth()>0){
+                        System.out.println("You are victorious!");
+                    }else{
+                        System.out.println("You died in combat");
+                        running = false;
+                    }
+
+                }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
             } else if (input.startsWith("e")) {
                 newCords[0] = oldCords[0];
                 newCords[1] = oldCords[1] + 1;
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                if(temp.equals ("\uD83D\uDC79")){
+                    System.out.println("ATTACK!!!");
+                    player.attack();
+                    if(player.getHealth()>0){
+                        System.out.println("You are victorious!");
+                    }else{
+                        System.out.println("You died in combat");
+                        running = false;
+                    }
+
+                }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
             } else if (input.startsWith("w")) {
                 newCords[0] = oldCords[0];
                 newCords[1] = oldCords[1] - 1;
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                if(temp.equals ("\uD83D\uDC79")){
+                    System.out.println("ATTACK!!!");
+                    player.attack();
+                    if(player.getHealth()>0){
+                        System.out.println("You are victorious!");
+                    }else{
+                        System.out.println("You died in combat");
+                        running = false;
+                    }
+
+                }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = "\uD83D\uDFEA";
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
             }
             System.out.println(Arrays.toString(newCords));
+
+            if(newCords[0]==0&&newCords[1]==0){
+                System.out.println("You've escaped with your life!!");
+                running=false;
+            }
         }
 
 
