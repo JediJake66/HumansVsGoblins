@@ -1,7 +1,7 @@
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Goblins {
-    private int strength= ThreadLocalRandom.current().nextInt(1, 20);
+    private int strength= ThreadLocalRandom.current().nextInt(8, 30);
     private int stamina;
     private String name;
     private String color;

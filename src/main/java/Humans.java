@@ -3,7 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Humans {
     Goblins goblin = new Goblins();
     private String name;
-    private int health=50;
+    private int health=100;
     private int strength= ThreadLocalRandom.current().nextInt(10, 20);
     private int stamina;
 
@@ -29,8 +29,8 @@ public class Humans {
             System.out.println("Goblin health" + goblin.getHealth());
             System.out.println("Goblin Strength" + goblin.getStrength());
         }
-        goblin.setHealth(20);
-        goblin.setStrength(ThreadLocalRandom.current().nextInt(1, 20));
+        goblin.setHealth(30);
+        goblin.setStrength(ThreadLocalRandom.current().nextInt(8, 30));
     }
     public String getName(){
         return name;
