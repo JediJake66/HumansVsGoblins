@@ -17,8 +17,8 @@ public class Main {
                 {"\uD83D\uDD11","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDC79","\uD83D\uDFEA","\uD83D\uDFEA"},
                 {"\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83D\uDFEA","\uD83E\uDDDD"}
         };
-
         boolean running = true;
+            System.out.println("W = North\nS = South\nA = West\nD = East");
         while(running) {
             for (int i = 0; i < gameBoard.length; i++) {
                 for (int j = 0; j < gameBoard[i].length; j++) {
@@ -29,33 +29,36 @@ public class Main {
             String input = playerInput.nextLine().toLowerCase();
             int[] oldCords = player.getCords();
             int[] newCords = new int[2];
-            if (input.startsWith("n")) {
+            if (input.startsWith("w")) {
                 newCords[0] = oldCords[0] - 1;
                 newCords[1] = oldCords[1];
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
                 if(temp.equals ("\uD83D\uDC79")){
                     System.out.println("ATTACK!!!");
                     player.attack();
                     if(player.getHealth()>0){
                         System.out.println("You are victorious!");
+                        gameBoard[oldCords[0]][oldCords[1]] ="\uD83D\uDFEA" ;
                     }else{
                         System.out.println("You died in combat");
                         running = false;
                     }
                 }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = temp;
             } else if (input.startsWith("s")) {
                 newCords[0] = oldCords[0] + 1;
                 newCords[1] = oldCords[1];
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
                 if(temp.equals ("\uD83D\uDC79")){
                     System.out.println("ATTACK!!!");
                     player.attack();
                     if(player.getHealth()>0){
                         System.out.println("You are victorious!");
+                        gameBoard[oldCords[0]][oldCords[1]] ="\uD83D\uDFEA" ;
                     }else{
                         System.out.println("You died in combat");
                         running = false;
@@ -63,17 +66,18 @@ public class Main {
 
                 }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = temp;
-            } else if (input.startsWith("e")) {
+            } else if (input.startsWith("d")) {
                 newCords[0] = oldCords[0];
                 newCords[1] = oldCords[1] + 1;
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
                 if(temp.equals ("\uD83D\uDC79")){
                     System.out.println("ATTACK!!!");
                     player.attack();
                     if(player.getHealth()>0){
                         System.out.println("You are victorious!");
+                        gameBoard[oldCords[0]][oldCords[1]] ="\uD83D\uDFEA" ;
                     }else{
                         System.out.println("You died in combat");
                         running = false;
@@ -81,25 +85,24 @@ public class Main {
 
                 }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = temp;
-            } else if (input.startsWith("w")) {
+            } else if (input.startsWith("a")) {
                 newCords[0] = oldCords[0];
                 newCords[1] = oldCords[1] - 1;
                 player.setCords(newCords);
                 Object temp = gameBoard[newCords[0]][newCords[1]];
+                gameBoard[oldCords[0]][oldCords[1]] = temp;
                 if(temp.equals ("\uD83D\uDC79")){
                     System.out.println("ATTACK!!!");
                     player.attack();
                     if(player.getHealth()>0){
                         System.out.println("You are victorious!");
+                        gameBoard[oldCords[0]][oldCords[1]] ="\uD83D\uDFEA" ;
                     }else{
                         System.out.println("You died in combat");
                         running = false;
                     }
-
                 }
                 gameBoard[newCords[0]][newCords[1]] = "\uD83E\uDDDD";
-                gameBoard[oldCords[0]][oldCords[1]] = temp;
             }
             System.out.println(Arrays.toString(newCords));
 
